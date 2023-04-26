@@ -1,0 +1,31 @@
+{
+  "name": "ShopIT",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "SET NODE_ENV=DEVELOPMENT&& nodemon backend/server.js",
+    "prod": "SET NODE_ENV=PRODUCTION&& nodemon backend/server.js",
+    "test": "jest sum.test.js",
+    "seeder": "node backend/utils/seeder.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
+    "cloudinary": "^1.36.2",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "jest": "^29.5.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.8.3",
+    "nodemailer": "^6.8.0",
+    "react-router-dom": "^5.2.0",
+    "validator": "^13.7.0"
+  }
+}
