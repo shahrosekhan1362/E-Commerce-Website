@@ -208,7 +208,7 @@ const ProductDetails = ({ match }) => {
                 Sold by: <strong>{product.seller}</strong>
               </p>
 
-              {user ? (
+              {user ? ( 
                 <button
                   id="review_btn"
                   type="button"
