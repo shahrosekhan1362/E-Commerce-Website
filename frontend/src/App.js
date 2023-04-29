@@ -36,9 +36,9 @@ import OrdersList from "./components/admin/OrdersList";
 import ProcessOrder from "./components/admin/ProcessOrder";
 import UsersList from "./components/admin/UsersList";
 import UpdateUser from "./components/admin/UpdateUser";
-import ProductReviews from "./components/admin/ProductReviews";
+import ProductReviews from "./components/admin/ProductReview";
 
-import ProtectedRoute from "./components/route/ProtectedRoute";
+import ProtectedRoute from "./components/routes/ProtectedRoute";
 import { loadUser } from "./actions/userActions";
 import { useSelector } from "react-redux";
 import store from "./store";
