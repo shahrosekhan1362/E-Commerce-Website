@@ -1,10 +1,9 @@
-//Create and send tocke and save in the cookie
-
+// Create and send token and save in the cookie.
 const sendToken = (user, statusCode, res) => {
-  // Create JWT tocken
+  // Create Jwt token
   const token = user.getJwtToken();
 
-  // Opetion for the Cookie
+  // Options for cookie
   const options = {
     expires: new Date(
       Date.now() + process.env.COOKIE_EXPIRES_TIME * 24 * 60 * 60 * 1000
@@ -14,7 +13,9 @@ const sendToken = (user, statusCode, res) => {
 
   res.status(statusCode).cookie("token", token, options).json({
     success: true,
-    token: token,
+    token,
+    user,
   });
 };
+
 module.exports = sendToken;

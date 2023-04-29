@@ -1,6 +1,5 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Pagination from "react-js-pagination";
-
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
@@ -9,10 +8,10 @@ import Product from "./product/Product";
 import Loader from "./layout/Loader";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../actions/productActions";
 import { useAlert } from "react-alert";
+import { getProducts } from "../actions/productActions";
 
-const createSliderWithTooltip = Slider.createSliderWithTooltip;
+const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range);
 
 const Home = ({ match }) => {
@@ -24,11 +23,16 @@ const Home = ({ match }) => {
   const categories = [
     "Electronics",
     "Cameras",
-    "Laptop",
+    "Laptops",
     "Accessories",
     "Headphones",
     "Food",
-    "Laptops",
+    "Books",
+    "Clothes/Shoes",
+    "Beauty/Health",
+    "Sports",
+    "Outdoor",
+    "Home",
   ];
 
   const alert = useAlert();
@@ -58,7 +62,10 @@ const Home = ({ match }) => {
   }
 
   let count = productsCount;
-  if (keyword) count = filteredProductsCount;
+  if (keyword) {
+    count = filteredProductsCount;
+  }
+
   return (
     <Fragment>
       {loading ? (
@@ -66,26 +73,37 @@ const Home = ({ match }) => {
       ) : (
         <Fragment>
           <MetaData title={"Buy Best Products Online"} />
+
           <h1 id="products_heading">Latest Products</h1>
-          <section id="products" class="container mt-5">
-            <div class="row">
+
+          <section id="products" className="container mt-5">
+            <div className="row">
               {keyword ? (
                 <Fragment>
                   <div className="col-6 col-md-3 mt-5 mb-5">
                     <div className="px-5">
                       <Range
-                        marks={{ 1: `$1`, 1000: `$1000` }}
+                        marks={{
+                          1: `$1`,
+                          1000: `$1000`,
+                        }}
                         min={1}
                         max={1000}
                         defaultValue={[1, 1000]}
                         tipFormatter={(value) => `$${value}`}
-                        tipProps={{ placement: "top", visible: "true" }}
+                        tipProps={{
+                          placement: "top",
+                          visible: true,
+                        }}
                         value={price}
                         onChange={(price) => setPrice(price)}
                       />
+
                       <hr className="my-5" />
+
                       <div className="mt-5">
                         <h4 className="mb-3">Categories</h4>
+
                         <ul className="pl-0">
                           {categories.map((category) => (
                             <li
@@ -103,8 +121,10 @@ const Home = ({ match }) => {
                       </div>
 
                       <hr className="my-3" />
+
                       <div className="mt-5">
                         <h4 className="mb-3">Ratings</h4>
+
                         <ul className="pl-0">
                           {[5, 4, 3, 2, 1].map((star) => (
                             <li
@@ -118,7 +138,9 @@ const Home = ({ match }) => {
                               <div className="rating-outer">
                                 <div
                                   className="rating-inner"
-                                  style={{ width: `${star * 20}%` }}
+                                  style={{
+                                    width: `${star * 20}%`,
+                                  }}
                                 ></div>
                               </div>
                             </li>
@@ -127,8 +149,9 @@ const Home = ({ match }) => {
                       </div>
                     </div>
                   </div>
-                  <div>
-                    <div>
+
+                  <div className="col-6 col-md-9">
+                    <div className="row">
                       {products.map((product) => (
                         <Product key={product._id} product={product} col={4} />
                       ))}
@@ -142,8 +165,9 @@ const Home = ({ match }) => {
               )}
             </div>
           </section>
+
           {resPerPage <= count && (
-            <div className="d-flex justify-content-cneter mt-5">
+            <div className="d-flex justify-content-center mt-5">
               <Pagination
                 activePage={currentPage}
                 itemsCountPerPage={resPerPage}
@@ -155,7 +179,7 @@ const Home = ({ match }) => {
                 lastPageText={"Last"}
                 itemClass="page-item"
                 linkClass="page-link"
-              ></Pagination>
+              />
             </div>
           )}
         </Fragment>
